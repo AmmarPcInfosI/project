@@ -9,7 +9,29 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  bool isEmailValid(String email) {
+    final RegExp emailRegex = RegExp(
+      r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$',
+      caseSensitive: false,
+    );
+
+    return emailRegex.hasMatch(email);
+  }
+
+  bool isPhoneNumberValid(String phoneNumber) {
+    final RegExp phoneRegex = RegExp(
+      r'^[7-9]\d{7}$',
+      caseSensitive: false,
+    );
+
+    return phoneRegex.hasMatch(phoneNumber);
+  }
+
   final TextEditingController _passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController nationalityController = TextEditingController();
+  TextEditingController phoneNumController = TextEditingController();
   bool _passwordVisible = false;
 
   @override
@@ -38,7 +60,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               width: MediaQuery.sizeOf(context).width * 361 / 390,
               height: MediaQuery.sizeOf(context).height * 545 / 844,
               decoration: ShapeDecoration(
-                color:const  Color(0xB289875B),
+                color: const Color(0xB289875B),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(40),
                 ),
@@ -66,6 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       width: MediaQuery.sizeOf(context).width * 332 / 390,
                       height: MediaQuery.sizeOf(context).height * 46 / 844,
                       child: TextFormField(
+                        controller: nameController,
                         enableInteractiveSelection: false,
                         autofocus: false,
                         textAlign: TextAlign.right,
@@ -74,7 +97,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           hintText: 'الاسم الثلاثي',
                           alignLabelWithHint: false,
                           hintStyle: GoogleFonts.notoSansArabic(
-                            color:const  Color(0xFF89875B),
+                            color: const Color(0xFF89875B),
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
                             height: 1,
@@ -91,7 +114,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
                         ),
-                        
                       )),
                   Container(
                       margin: EdgeInsets.only(
@@ -99,6 +121,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       width: MediaQuery.sizeOf(context).width * 332 / 390,
                       height: MediaQuery.sizeOf(context).height * 46 / 844,
                       child: TextFormField(
+                        controller: emailController,
                         enableInteractiveSelection: false,
                         autofocus: false,
                         textAlign: TextAlign.right,
@@ -107,14 +130,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           hintText: 'البريد الالكتروني',
                           alignLabelWithHint: false,
                           hintStyle: GoogleFonts.notoSansArabic(
-                            color:const  Color(0xFF89875B),
+                            color: const Color(0xFF89875B),
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
                             height: 1,
                           ),
                           contentPadding: const EdgeInsets.all(10),
                           filled: true,
-                          fillColor:const  Color(0xFFD9D9D9),
+                          fillColor: const Color(0xFFD9D9D9),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -124,7 +147,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
                         ),
-                       
                       )),
                   Container(
                       margin: EdgeInsets.only(
@@ -132,6 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       width: MediaQuery.sizeOf(context).width * 332 / 390,
                       height: MediaQuery.sizeOf(context).height * 46 / 844,
                       child: TextFormField(
+                        controller: phoneNumController,
                         enableInteractiveSelection: false,
                         autofocus: false,
                         textAlign: TextAlign.right,
@@ -145,7 +168,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             fontWeight: FontWeight.w500,
                             height: 1,
                           ),
-                          contentPadding:const  EdgeInsets.all(10),
+                          contentPadding: const EdgeInsets.all(10),
                           filled: true,
                           fillColor: Color(0xFFD9D9D9),
                           border: OutlineInputBorder(
@@ -157,7 +180,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
                         ),
-                       
                       )),
                   Container(
                       margin: EdgeInsets.only(
@@ -165,6 +187,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       width: MediaQuery.sizeOf(context).width * 332 / 390,
                       height: MediaQuery.sizeOf(context).height * 46 / 844,
                       child: TextFormField(
+                        controller: nationalityController,
                         enableInteractiveSelection: false,
                         autofocus: false,
                         textAlign: TextAlign.right,
@@ -190,7 +213,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
                         ),
-                        
                       )),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -250,9 +272,67 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: MediaQuery.sizeOf(context).height * 37 / 844,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      String fullName = nameController.text;
+                      String email = emailController.text;
+                      String nationality=nationalityController.text;
+                      String phoneNumber = phoneNumController.text;
+                      String password = _passwordController.text;
+
+                      if (fullName.isEmpty ||
+                          email.isEmpty ||nationality.isEmpty ||
+                          phoneNumber.isEmpty ||
+                          password.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('أكمل كافة الحقول',textAlign:TextAlign.right,),
+                          ),
+                        );
+                      } else if (!isEmailValid(email)) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('أدخل بريد الكتروني صالح',textAlign:TextAlign.right,),
+                          ),
+                        );
+                      } else if (!isPhoneNumberValid(phoneNumber)) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('الرجاء إدخال رقم هاتف صالح',textAlign:TextAlign.right,),
+                          ),
+                        );
+                      } else if (password.length < 8) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                                'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.',textAlign:TextAlign.right,),
+                          ),
+                        );
+                      } else if (!password.contains(RegExp(r'[a-z]'))) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                                'يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل.',textAlign:TextAlign.right,),
+                          ),
+                        );
+                      } else if (!password.contains(RegExp(r'[A-Z]'))) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                                'يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل.',textAlign:TextAlign.right,),
+                          ),
+                        );
+                      } else if (!password
+                          .contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                                'يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل.',textAlign:TextAlign.right,),
+                          ),
+                        );
+                      } else {}
+                    },
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF96945E), 
+                      primary: Color(0xFF96945E),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
                       ),
@@ -281,3 +361,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 }
+
+
+  // Rest of your button properties
+
