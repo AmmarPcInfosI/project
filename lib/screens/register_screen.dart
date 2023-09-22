@@ -1,0 +1,283 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController _passwordController = TextEditingController();
+  bool _passwordVisible = false;
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Container(
+          width: MediaQuery.sizeOf(context).width,
+          height: MediaQuery.sizeOf(context).height,
+          clipBehavior: Clip.antiAlias,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("res/bg.jpeg"),
+              fit: BoxFit.fill,
+            ),
+          ),
+          child: Center(
+            child: Container(
+              width: MediaQuery.sizeOf(context).width * 361 / 390,
+              height: MediaQuery.sizeOf(context).height * 545 / 844,
+              decoration: ShapeDecoration(
+                color:const  Color(0xB289875B),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(40),
+                ),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                        top: MediaQuery.sizeOf(context).height * 28 / 844),
+                    child: Text(
+                      'انشاء حساب',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.notoSansArabic(
+                        color: Colors.white,
+                        fontSize: 36,
+                        fontWeight: FontWeight.w400,
+                        height: 1,
+                      ),
+                    ),
+                  ),
+                  Container(
+                      margin: EdgeInsets.only(
+                          top: MediaQuery.sizeOf(context).height * 38 / 844),
+                      width: MediaQuery.sizeOf(context).width * 332 / 390,
+                      height: MediaQuery.sizeOf(context).height * 46 / 844,
+                      child: TextFormField(
+                        enableInteractiveSelection: false,
+                        autofocus: false,
+                        textAlign: TextAlign.right,
+                        keyboardType: TextInputType.name,
+                        decoration: InputDecoration(
+                          hintText: 'الاسم الثلاثي',
+                          alignLabelWithHint: false,
+                          hintStyle: GoogleFonts.notoSansArabic(
+                            color:const  Color(0xFF89875B),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            height: 1,
+                          ),
+                          contentPadding: const EdgeInsets.all(10),
+                          filled: true,
+                          fillColor: const Color(0xFFD9D9D9),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        style: const TextStyle(
+                          color: Color(0xFF89875B),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                        
+                      )),
+                  Container(
+                      margin: EdgeInsets.only(
+                          top: MediaQuery.sizeOf(context).height * 18 / 844),
+                      width: MediaQuery.sizeOf(context).width * 332 / 390,
+                      height: MediaQuery.sizeOf(context).height * 46 / 844,
+                      child: TextFormField(
+                        enableInteractiveSelection: false,
+                        autofocus: false,
+                        textAlign: TextAlign.right,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          hintText: 'البريد الالكتروني',
+                          alignLabelWithHint: false,
+                          hintStyle: GoogleFonts.notoSansArabic(
+                            color:const  Color(0xFF89875B),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            height: 1,
+                          ),
+                          contentPadding: const EdgeInsets.all(10),
+                          filled: true,
+                          fillColor:const  Color(0xFFD9D9D9),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        style: const TextStyle(
+                          color: Color(0xFF89875B),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                       
+                      )),
+                  Container(
+                      margin: EdgeInsets.only(
+                          top: MediaQuery.sizeOf(context).height * 18 / 844),
+                      width: MediaQuery.sizeOf(context).width * 332 / 390,
+                      height: MediaQuery.sizeOf(context).height * 46 / 844,
+                      child: TextFormField(
+                        enableInteractiveSelection: false,
+                        autofocus: false,
+                        textAlign: TextAlign.right,
+                        keyboardType: TextInputType.phone,
+                        decoration: InputDecoration(
+                          hintText: 'رقم الهاتف',
+                          alignLabelWithHint: false,
+                          hintStyle: GoogleFonts.notoSansArabic(
+                            color: Color(0xFF89875B),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            height: 1,
+                          ),
+                          contentPadding:const  EdgeInsets.all(10),
+                          filled: true,
+                          fillColor: Color(0xFFD9D9D9),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        style: const TextStyle(
+                          color: Color(0xFF89875B),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                       
+                      )),
+                  Container(
+                      margin: EdgeInsets.only(
+                          top: MediaQuery.sizeOf(context).height * 18 / 844),
+                      width: MediaQuery.sizeOf(context).width * 332 / 390,
+                      height: MediaQuery.sizeOf(context).height * 46 / 844,
+                      child: TextFormField(
+                        enableInteractiveSelection: false,
+                        autofocus: false,
+                        textAlign: TextAlign.right,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          hintText: 'الجنسية',
+                          alignLabelWithHint: false,
+                          hintStyle: GoogleFonts.notoSansArabic(
+                            color: Color(0xFF89875B),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            height: 1,
+                          ),
+                          contentPadding: EdgeInsets.all(10),
+                          filled: true,
+                          fillColor: Color(0xFFD9D9D9),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        style: TextStyle(
+                          color: Color(0xFF89875B),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                        
+                      )),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                            top: MediaQuery.sizeOf(context).height * 18 / 844),
+                        width: MediaQuery.sizeOf(context).width * 332 / 390,
+                        height: MediaQuery.sizeOf(context).height * 46 / 844,
+                        child: TextFormField(
+                          enableInteractiveSelection: false,
+                          autofocus: false,
+                          textAlign: TextAlign.right,
+                          controller: _passwordController,
+                          obscureText: !_passwordVisible,
+                          decoration: InputDecoration(
+                            alignLabelWithHint: false,
+                            hintStyle: GoogleFonts.notoSansArabic(
+                              color: Color(0xFF89875B),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                              height: 1,
+                            ),
+                            contentPadding: EdgeInsets.all(10),
+                            filled: true,
+                            fillColor: Color(0xFFD9D9D9),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            hintText: 'كلمة المرور',
+                            prefixIcon: IconButton(
+                              icon: Icon(
+                                _passwordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _passwordVisible = !_passwordVisible;
+                                });
+                              },
+                            ),
+                          ),
+                          style: TextStyle(
+                            color: Color(0xFF89875B),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          ),
+                          keyboardType: TextInputType.visiblePassword,
+                          textInputAction: TextInputAction.done,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: MediaQuery.sizeOf(context).height * 37 / 844,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFF96945E), 
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      minimumSize: Size(
+                        MediaQuery.of(context).size.width * 149 / 390,
+                        MediaQuery.of(context).size.height * 51 / 844,
+                      ),
+                    ),
+                    child: Text(
+                      'انشاء حساب',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.notoSansArabic(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        height: 0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
