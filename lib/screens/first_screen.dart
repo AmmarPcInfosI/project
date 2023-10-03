@@ -20,7 +20,7 @@ class _FirstScreenState extends State<FirstScreen> {
       width: MediaQuery.sizeOf(context).width,
       height: MediaQuery.sizeOf(context).height,
       clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("res/bg.jpeg"),
           fit: BoxFit.fill,
@@ -37,7 +37,7 @@ class _FirstScreenState extends State<FirstScreen> {
                 Text(
                   'اكتشف',
                   style: GoogleFonts.notoSansArabic(
-                    color: Color(0xFF89875B),
+                    color: const Color(0xFF89875B),
                     fontSize: 64,
                     fontWeight: FontWeight.w500,
                     height: 1,
@@ -46,7 +46,7 @@ class _FirstScreenState extends State<FirstScreen> {
                 Text(
                   'افضل الاماكن في نزوى',
                   style: GoogleFonts.notoSansArabic(
-                    color: Color(0xFF89875B),
+                    color: const Color(0xFF89875B),
                     fontSize: 32,
                     fontWeight: FontWeight.w500,
                     height: 1,
@@ -62,15 +62,15 @@ class _FirstScreenState extends State<FirstScreen> {
             child: SwipeableButtonView(
               buttonText: 'ابدأ',
               buttonWidget: Container(
-                child: Icon(
+                child: const Icon(
                   Icons.arrow_forward_ios_rounded,
                   color: Colors.grey,
                 ),
               ),
-              activeColor: Color(0xFF89875B),
+              activeColor: const Color(0xFF89875B),
               isFinished: isFinished,
               onWaitingProcess: () {
-                Future.delayed(Duration(seconds: 1), () {
+                Future.delayed(const Duration(seconds: 1), () {
                   setState(() {
                     isFinished = true;
                   });
@@ -80,7 +80,7 @@ class _FirstScreenState extends State<FirstScreen> {
                 await Navigator.push(
                     context,
                     PageTransition(
-                        type: PageTransitionType.fade, child: SecondScreen()));
+                        type: PageTransitionType.fade, child: const SecondScreen()));
           
                 //TODO: For reverse ripple effect animation
                 setState(() {

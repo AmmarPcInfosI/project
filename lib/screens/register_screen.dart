@@ -44,7 +44,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Container(
           width: MediaQuery.sizeOf(context).width,
           height: MediaQuery.sizeOf(context).height,
@@ -163,14 +163,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           hintText: 'رقم الهاتف',
                           alignLabelWithHint: false,
                           hintStyle: GoogleFonts.notoSansArabic(
-                            color: Color(0xFF89875B),
+                            color: const Color(0xFF89875B),
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
                             height: 1,
                           ),
                           contentPadding: const EdgeInsets.all(10),
                           filled: true,
-                          fillColor: Color(0xFFD9D9D9),
+                          fillColor: const Color(0xFFD9D9D9),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -196,19 +196,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           hintText: 'الجنسية',
                           alignLabelWithHint: false,
                           hintStyle: GoogleFonts.notoSansArabic(
-                            color: Color(0xFF89875B),
+                            color: const Color(0xFF89875B),
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
                             height: 1,
                           ),
-                          contentPadding: EdgeInsets.all(10),
+                          contentPadding: const EdgeInsets.all(10),
                           filled: true,
-                          fillColor: Color(0xFFD9D9D9),
+                          fillColor: const Color(0xFFD9D9D9),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
                         ),
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color(0xFF89875B),
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
@@ -232,14 +232,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           decoration: InputDecoration(
                             alignLabelWithHint: false,
                             hintStyle: GoogleFonts.notoSansArabic(
-                              color: Color(0xFF89875B),
+                              color: const Color(0xFF89875B),
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
                               height: 1,
                             ),
-                            contentPadding: EdgeInsets.all(10),
+                            contentPadding: const EdgeInsets.all(10),
                             filled: true,
-                            fillColor: Color(0xFFD9D9D9),
+                            fillColor: const Color(0xFFD9D9D9),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
@@ -257,7 +257,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               },
                             ),
                           ),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Color(0xFF89875B),
                             fontWeight: FontWeight.w500,
                             fontSize: 16,
@@ -284,39 +284,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           phoneNumber.isEmpty ||
                           password.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
+                          const SnackBar(
                             content: Text('أكمل كافة الحقول',textAlign:TextAlign.right,),
                           ),
                         );
                       } else if (!isEmailValid(email)) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
+                          const SnackBar(
                             content: Text('أدخل بريد الكتروني صالح',textAlign:TextAlign.right,),
                           ),
                         );
                       } else if (!isPhoneNumberValid(phoneNumber)) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
+                          const SnackBar(
                             content: Text('الرجاء إدخال رقم هاتف صالح',textAlign:TextAlign.right,),
                           ),
                         );
                       } else if (password.length < 8) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
+                          const SnackBar(
                             content: Text(
                                 'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.',textAlign:TextAlign.right,),
                           ),
                         );
                       } else if (!password.contains(RegExp(r'[a-z]'))) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
+                          const SnackBar(
                             content: Text(
                                 'يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل.',textAlign:TextAlign.right,),
                           ),
                         );
                       } else if (!password.contains(RegExp(r'[A-Z]'))) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
+                          const SnackBar(
                             content: Text(
                                 'يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل.',textAlign:TextAlign.right,),
                           ),
@@ -324,7 +324,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       } else if (!password
                           .contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
+                          const SnackBar(
                             content: Text(
                                 'يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل.',textAlign:TextAlign.right,),
                           ),
@@ -332,7 +332,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       } else {}
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF96945E),
+                      backgroundColor: const Color(0xFF96945E),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
                       ),

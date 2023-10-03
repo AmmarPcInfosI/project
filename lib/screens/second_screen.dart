@@ -18,7 +18,7 @@ class _SecondScreenState extends State<SecondScreen> {
       width: MediaQuery.sizeOf(context).width,
       height: MediaQuery.sizeOf(context).height,
       clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("res/bg.jpeg"),
           fit: BoxFit.fill,
@@ -36,7 +36,7 @@ class _SecondScreenState extends State<SecondScreen> {
                 Text(
                   'اكتشف',
                   style: GoogleFonts.notoSansArabic(
-                      color: Color(0xFF89875B),
+                      color: const Color(0xFF89875B),
                       fontSize: 64,
                       fontWeight: FontWeight.w500,
                       height: 1),
@@ -44,7 +44,7 @@ class _SecondScreenState extends State<SecondScreen> {
                 Text(
                   'افضل الاماكن في نزوى',
                   style: GoogleFonts.notoSansArabic(
-                    color: Color(0xFF89875B),
+                    color: const Color(0xFF89875B),
                     fontSize: 32,
                     fontWeight: FontWeight.w500,
                     height: 1,
@@ -60,11 +60,11 @@ class _SecondScreenState extends State<SecondScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
               );
             },
             style: ElevatedButton.styleFrom(
-              primary: Color(0xB289875B), // Set the background color
+              backgroundColor: const Color(0xB289875B), // Set the background color
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40),
               ),
@@ -91,11 +91,11 @@ class _SecondScreenState extends State<SecondScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => RegisterScreen()),
+                MaterialPageRoute(builder: (context) => const RegisterScreen()),
               );
             },
             style: ElevatedButton.styleFrom(
-              primary: Color(0xB289875B),
+              backgroundColor: const Color(0xB289875B),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40),
               ),
@@ -124,14 +124,14 @@ class _SecondScreenState extends State<SecondScreen> {
                   'الدخول كزائر',
                   style: GoogleFonts.notoSansArabic(
                     shadows: [
-                      Shadow(color: Colors.white, offset: Offset(0, -5))
+                      const Shadow(color: Colors.white, offset: Offset(0, -5))
                     ],
                     color: Colors.transparent,
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
                     height: 0,
                     decoration: TextDecoration.underline,
-                    decorationColor: Color(0xB289875B),
+                    decorationColor: const Color(0xB289875B),
                     decorationThickness: 4,
                     decorationStyle: TextDecorationStyle.solid,
                   ),
