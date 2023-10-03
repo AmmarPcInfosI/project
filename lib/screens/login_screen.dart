@@ -166,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) =>NavigationScreen(title: 'none')));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) =>const NavigationScreen(title: 'none')));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF96945E), // Set the background color

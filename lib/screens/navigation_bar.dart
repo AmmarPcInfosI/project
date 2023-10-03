@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 
 class NavigationScreen extends StatefulWidget {
-  NavigationScreen({Key? key, required this.title}) : super(key: key);
+  const NavigationScreen({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -51,8 +51,8 @@ class _NavigationScreenState extends State<NavigationScreen>
 
   @override
   Widget build(BuildContext context) {
-    final Color unselectedColor = Colors.white;
-    final Color unselectedColorReverse = Colors.white;
+    const Color unselectedColor = Colors.white;
+    const Color unselectedColorReverse = Colors.white;
 
     return SafeArea(
       child: Scaffold(
@@ -62,6 +62,45 @@ class _NavigationScreenState extends State<NavigationScreen>
         ),
         body: BottomBar(
           clip: Clip.none,
+          fit: StackFit.expand,
+          icon: (width, height) => Center(
+            child: IconButton(
+              padding: EdgeInsets.zero,
+              onPressed: null,
+              icon: Icon(
+                Icons.arrow_upward_rounded,
+                color: unselectedColor,
+                size: width,
+              ),
+            ),
+          ),
+          borderRadius: BorderRadius.circular(500),
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.decelerate,
+          showIcon: true,
+          width: MediaQuery.of(context).size.width * 0.8,
+          barColor: const Color(0xFF89875B),
+          start: 2,
+          end: 0,
+          offset: 10,
+          barAlignment: Alignment.bottomCenter,
+          iconHeight: 30,
+          iconWidth: 30,
+          reverse: false,
+          hideOnScroll: true,
+          scrollOpposite: false,
+          onBottomBarHidden: () {},
+          onBottomBarShown: () {},
+          body: (context, controller) => TabBarView(
+            controller: tabController,
+            dragStartBehavior: DragStartBehavior.down,
+            physics: const BouncingScrollPhysics(),
+            children: colors
+                .map(
+                  (e) => const Text('ammar'),
+                )
+                .toList(),
+          ),
           child: Stack(
             alignment: Alignment.center,
             clipBehavior: Clip.none,
@@ -76,7 +115,7 @@ class _NavigationScreenState extends State<NavigationScreen>
                           : unselectedColor,
                       width: 4,
                     ),
-                    insets: EdgeInsets.fromLTRB(16, 0, 16, 8)),
+                    insets: const EdgeInsets.fromLTRB(16, 0, 16, 8)),
                 tabs: [
                   SizedBox(
                     height: 55,
@@ -136,9 +175,8 @@ class _NavigationScreenState extends State<NavigationScreen>
                 width: 75,
                 height: 75,
                 child: FloatingActionButton(
-                  backgroundColor: Color(0xFF6C6A48),
+                  backgroundColor: const Color(0xFF6C6A48),
                   onPressed: () {},
-                  child: Icon(Icons.camera_alt_sharp),
                   heroTag: null, 
                   mini: false,
                   
@@ -146,48 +184,10 @@ class _NavigationScreenState extends State<NavigationScreen>
                    shape: RoundedRectangleBorder(
                      borderRadius: BorderRadius.circular(50), 
                    ),
+                  child: const Icon(Icons.camera_alt_sharp),
                 ),
               )
             ],
-          ),
-          fit: StackFit.expand,
-          icon: (width, height) => Center(
-            child: IconButton(
-              padding: EdgeInsets.zero,
-              onPressed: null,
-              icon: Icon(
-                Icons.arrow_upward_rounded,
-                color: unselectedColor,
-                size: width,
-              ),
-            ),
-          ),
-          borderRadius: BorderRadius.circular(500),
-          duration: Duration(milliseconds: 500),
-          curve: Curves.decelerate,
-          showIcon: true,
-          width: MediaQuery.of(context).size.width * 0.8,
-          barColor: Color(0xFF89875B),
-          start: 2,
-          end: 0,
-          offset: 10,
-          barAlignment: Alignment.bottomCenter,
-          iconHeight: 30,
-          iconWidth: 30,
-          reverse: false,
-          hideOnScroll: true,
-          scrollOpposite: false,
-          onBottomBarHidden: () {},
-          onBottomBarShown: () {},
-          body: (context, controller) => TabBarView(
-            controller: tabController,
-            dragStartBehavior: DragStartBehavior.down,
-            physics: const BouncingScrollPhysics(),
-            children: colors
-                .map(
-                  (e) => Text('ammar'),
-                )
-                .toList(),
           ),
         ),
       ),
