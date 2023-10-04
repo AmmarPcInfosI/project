@@ -14,27 +14,18 @@ class _NavigationScreenState extends State<NavigationScreen>
     with SingleTickerProviderStateMixin {
   late int currentPage;
   late TabController tabController;
-  final List<Color> colors = [
-    Colors.yellow,
-    Colors.red,
-    Colors.green,
-    Colors.blue,
-    Colors.pink,
-  ];
 
   @override
   void initState() {
+    super.initState();
     currentPage = 0;
     tabController = TabController(length: 5, vsync: this);
-    tabController.animation?.addListener(
-      () {
-        final value = tabController.animation!.value.round();
-        if (value != currentPage && mounted) {
-          changePage(value);
-        }
-      },
-    );
-    super.initState();
+    tabController.animation?.addListener(() {
+      final value = tabController.animation!.value.round();
+      if (value != currentPage && mounted) {
+        changePage(value);
+      }
+    });
   }
 
   void changePage(int newPage) {
@@ -51,15 +42,9 @@ class _NavigationScreenState extends State<NavigationScreen>
 
   @override
   Widget build(BuildContext context) {
-    const Color unselectedColor = Colors.white;
-    const Color unselectedColorReverse = Colors.white;
-
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-          backgroundColor: Colors.black,
-        ),
+        
         body: BottomBar(
           clip: Clip.none,
           fit: StackFit.expand,
@@ -69,16 +54,16 @@ class _NavigationScreenState extends State<NavigationScreen>
               onPressed: null,
               icon: Icon(
                 Icons.arrow_upward_rounded,
-                color: unselectedColor,
+                color: Colors.white, 
                 size: width,
               ),
             ),
           ),
-          borderRadius: BorderRadius.circular(500),
+          borderRadius: BorderRadius.circular(20),
           duration: const Duration(milliseconds: 500),
           curve: Curves.decelerate,
           showIcon: true,
-          width: MediaQuery.of(context).size.width * 0.8,
+          width: MediaQuery.of(context).size.width * 346 / 390,
           barColor: const Color(0xFF89875B),
           start: 2,
           end: 0,
@@ -95,11 +80,10 @@ class _NavigationScreenState extends State<NavigationScreen>
             controller: tabController,
             dragStartBehavior: DragStartBehavior.down,
             physics: const BouncingScrollPhysics(),
-            children: colors
-                .map(
-                  (e) => const Text('ammar'),
-                )
-                .toList(),
+            children: List.generate(
+              5,
+              (index) => const Center(child: Text('Nizwa')), // Replace with your actual conten
+            ),
           ),
           child: Stack(
             alignment: Alignment.center,
@@ -110,64 +94,16 @@ class _NavigationScreenState extends State<NavigationScreen>
                 controller: tabController,
                 indicator: UnderlineTabIndicator(
                     borderSide: BorderSide(
-                      color: currentPage <= 4
-                          ? colors[currentPage]
-                          : unselectedColor,
+                      color: Colors.white, // Set the color to white
                       width: 4,
                     ),
                     insets: const EdgeInsets.fromLTRB(16, 0, 16, 8)),
                 tabs: [
-                  SizedBox(
-                    height: 55,
-                    width: 40,
-                    child: Center(
-                        child: Icon(
-                      Icons.home,
-                      color: currentPage == 0 ? colors[0] : unselectedColor,
-                    )),
-                  ),
-                  SizedBox(
-                    height: 55,
-                    width: 40,
-                    child: Center(
-                      child: Icon(
-                        Icons.search,
-                        color: currentPage == 1 ? colors[1] : unselectedColor,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 55,
-                    width: 40,
-                    child: Center(
-                      child: Icon(
-                        Icons.add,
-                        color: currentPage == 2
-                            ? colors[2]
-                            : unselectedColorReverse,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 55,
-                    width: 40,
-                    child: Center(
-                      child: Icon(
-                        Icons.favorite,
-                        color: currentPage == 3 ? colors[3] : unselectedColor,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 55,
-                    width: 40,
-                    child: Center(
-                      child: Icon(
-                        Icons.settings,
-                        color: currentPage == 4 ? colors[4] : unselectedColor,
-                      ),
-                    ),
-                  ),
+                  _buildTabIcon(Icons.person_sharp),
+                  _buildTabIcon(Icons.calendar_month_sharp),
+                  _buildTabIcon(Icons.add),
+                  _buildTabIcon(Icons.location_on_sharp),
+                  _buildTabIcon(Icons.home_sharp),
                 ],
               ),
               Positioned(
@@ -177,18 +113,30 @@ class _NavigationScreenState extends State<NavigationScreen>
                 child: FloatingActionButton(
                   backgroundColor: const Color(0xFF6C6A48),
                   onPressed: () {},
-                  heroTag: null, 
+                  heroTag: null,
                   mini: false,
-                  
-                   
-                   shape: RoundedRectangleBorder(
-                     borderRadius: BorderRadius.circular(50), 
-                   ),
-                  child: const Icon(Icons.camera_alt_sharp),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: const Icon(Icons.camera_alt_sharp,size: 37,),
                 ),
               )
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTabIcon(IconData icon) {
+    return SizedBox(
+      height:55,
+      width: 48.2,
+      child: Center(
+        child: Icon(
+          icon,
+          color: Colors.white,
+           size: 30,// Set the color to white
         ),
       ),
     );
